@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AthuUserConfig(AppConfig):
+class AthunUserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'athu_user'
+    name = 'athun_user'
