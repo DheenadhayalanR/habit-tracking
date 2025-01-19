@@ -27,7 +27,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
     
 
-class Loginserializer(TokenObtainPairSerializer):
+class Loginserializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password']
@@ -36,7 +36,3 @@ class Loginserializer(TokenObtainPairSerializer):
 
 class LogoutSerializer():
     pass
-
-# class ProfileSerializer():
-#     class Meta:
-#         fields='__all__'
