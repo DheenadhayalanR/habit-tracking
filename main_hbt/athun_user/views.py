@@ -2,19 +2,17 @@ from .models import User
 from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet 
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.tokens import RefreshToken 
+from .token_generate import get_tokens_for_user ,refresh_access_token
 from .serializer import RegisterSerializer,Loginserializer
 
 
 # Create your views here.
 
-class Registerviwe(ModelViewSet):
-    
-    http_method_names=['post']  
+class Registerviwe(generics.CreateAPIView):
+
     serializer_class = RegisterSerializer
-    permission_classes = (IsAuthenticated,)
 
     def create(self, request, *args, **kwargs):
 
@@ -38,11 +36,9 @@ class Registerviwe(ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
-class Loginview(ModelViewSet):
+class Loginview(generics.CreateAPIView):
 
-    http_method_names=['post']
     serializer_class = Loginserializer
-    permission_classes = (IsAuthenticated,)
 
     def create(self, request):
         
@@ -53,12 +49,22 @@ class Loginview(ModelViewSet):
         user = authenticate(request, email=email, password=password)
 
         if user is not None: 
-            refresh = RefreshToken.for_user(user)  # Create a refresh token for the given user
+            refresh = get_tokens_for_user(user)  # Create a refresh token for the given user
 
             return Response({
-                      'refresh': str(refresh), 
-                      'access': str(refresh.access_token)  # Access token can be retrieved from the refresh token
+                      'refresh': str(refresh['refresh']), 
+                      'access' : str(refresh['access'])  # Access token can be retrieved from the refresh token
                     })
         else:
              return Response("Invalid email or password")
 
+
+class RefershAccessToken(generics.CreateAPIView):
+
+    def create(self, request, *args, **kwargs):
+        refresh_token = request.data.get("refresh")
+        access_token = refresh_access_token(refresh_token)
+        
+        if access_token: 
+            return Response({"access": access_token}, status=200)
+        return Response({"error": "Invalid or expired refresh token"}, status=400)
