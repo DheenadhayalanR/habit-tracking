@@ -1,4 +1,4 @@
-from .models import User,Profile
+from .models import User
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
