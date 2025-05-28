@@ -3,6 +3,7 @@ from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework import generics
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated
 from .token_generate import get_tokens_for_user ,refresh_access_token
 from .serializer import RegisterSerializer,Loginserializer
@@ -34,7 +35,6 @@ class Registerviwe(generics.CreateAPIView):
         
         # Return validation errors
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
     
 class Loginview(generics.CreateAPIView):
 
