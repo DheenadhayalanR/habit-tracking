@@ -25,33 +25,33 @@ class SetGoal(models.Model):
         ('PH','Physical health'),
         ('MH','Mental health')
     )
+    
+    UserProfile_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE ,null=False)
+    habit_type = models.CharField(max_length=20, choices=typeofhb, default='PH')
+    # exercise_name = models.CharField(max_length=20, choices=list_of_exercise, blank=True)     # Exercise 
+    # sports_name = models.CharField(max_length=20, choices=list_of_Sports, blank=True)         # Sports
 
-    list_of_Sports = (
-        ('Running','Running'),
-        ('Swimming','Swimming')
-    )
+# Physical health
+# Exercise model
+class Exercise(models.Model):
 
     list_of_exercise = (
         ('Push-ups','Push-ups'),
         ('Pull-ups','Pull-ups'),
         ('Bench Press','Bench Press')
       )
-    
-    UserProfile_id = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    habit_type = models.CharField(max_length=20, choices=typeofhb, default='PH')
-    exercise_name = models.CharField(max_length=20, choices=list_of_exercise, blank=True)     # Exercise 
-    sports_name = models.CharField(max_length=20, choices=list_of_Sports, blank=True)         # Sports
 
-# Physical health
-# # Exercise model
-# class Exercise(models.Model):
-
-#     Category_id = models.ForeignKey(SetGoal, on_delete=models.CASCADE)
-#     exercise_name = models.CharField(max_length=20, choices=list_of_exercise, blank=True)
+    # Category_id = models.ForeignKey(SetGoal, on_delete=models.CASCADE)
+    # exercise_name = models.Multi(max_length=20, choices=list_of_exercise, blank=True)
     
 
 # # Sports model
-# class Sports(models.Model):
+class Sports(models.Model):
     
-#     Category_id = models.ForeignKey(SetGoal, on_delete=models.CASCADE)
-#     sports_name = models.CharField(max_length=20, choices=list_of_Sports, blank=True)
+    list_of_Sports = (
+        ('Running','Running'),
+        ('Swimming','Swimming')
+    )
+    
+    # Category_id = models.ForeignKey(SetGoal, on_delete=models.CASCADE)
+    # sports_name = models.CharField(max_length=20, choices=list_of_Sports, blank=True)

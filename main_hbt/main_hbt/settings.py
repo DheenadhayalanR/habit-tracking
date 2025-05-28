@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 
@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-qp*l2ado7n*s9^qs*!l=s1v_v%ptvl$8**=+wo_@!lq^n2xr_p
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] 
 
 
 # Application definition
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
     'athun_user',
@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "athun_user.User"
 
 MIDDLEWARE = [
+
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,17 +84,17 @@ WSGI_APPLICATION = 'main_hbt.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hbtdb',
-        "USER": "root",
-        "PASSWORD": "toor121.",
-        'HOST':'localhost',
-        'PORT':'3306',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'hbtdb',
+    #     "USER": "root",
+    #     "PASSWORD": "toor121.",
+    #     'HOST':'localhost',
+    #     'PORT':'3306',
+    # }
 }
 
-
+DATABASES['default'] = dj_database_url.parse("postgresql://root:XnRGAqquHHuX3jqAGlE7S7SNwABK2XVI@dpg-d0q5nnje5dus73eef0s0-a.oregon-postgres.render.com/hbtrack")
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -141,7 +143,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=59),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -154,3 +156,5 @@ SIMPLE_JWT = {
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
