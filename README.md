@@ -1,1 +1,1 @@
-# habit-tracking
+running command - npx react-native run-android
