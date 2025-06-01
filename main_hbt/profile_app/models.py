@@ -5,11 +5,19 @@ from athun_user.models import User
 
 # profile model
 class UserProfile(models.Model):
-
+    enum_gender ={
+        "Male":"Male",
+        "Female":"Female",
+        "Others" : "Others"
+    }
     user   = models.OneToOneField(User,on_delete=models.CASCADE)  #one-to-one relationeship
     age    = models.PositiveSmallIntegerField(null=True,blank=True) 
+    gender = models.CharField(max_length=20, choices=enum_gender, blank=True)
     height = models.DecimalField(max_digits=5, decimal_places=2,null=True) 
     weight = models.DecimalField(max_digits=5, decimal_places=2,null=True)
+    career = models.CharField(max_length=50,null=True)
+    contact = models.CharField(max_length=50,null=True)
+    bio = models.CharField(max_length=500,null=True)
     profile_pic = models.ImageField(upload_to='user_images',null=True)
 
 
