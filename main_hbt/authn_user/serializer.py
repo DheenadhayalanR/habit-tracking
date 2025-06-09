@@ -19,7 +19,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     
     
     def create(self, validated_data):
-
         try:
             user = User.objects.get(email=validated_data['email'])
         except ObjectDoesNotExist:

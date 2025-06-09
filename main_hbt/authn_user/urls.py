@@ -12,5 +12,5 @@ urlpatterns = [
     path('signup/',views.Registerviwe.as_view(),name='Registervie'),
     path('signin/',views.Loginview.as_view(),name='Loginviwe'),
     path('refershaccesstoken/',views.RefershAccessToken.as_view(),name='Refersh Access Token'),
-    path('profile/',include('profile_app.urls')),
+    # path('profile/',include('profile_app.urls')),
 ]

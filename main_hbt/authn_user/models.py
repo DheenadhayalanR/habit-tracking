@@ -1,5 +1,5 @@
 from django.db import models
-from athun_user.manager import Usermanager
+from authn_user.manager import Usermanager
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 
