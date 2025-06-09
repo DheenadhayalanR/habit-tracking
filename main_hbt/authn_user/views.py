@@ -14,7 +14,7 @@ from .serializer import RegisterSerializer,Loginserializer
 class Registerviwe(generics.CreateAPIView):
 
     serializer_class = RegisterSerializer
-
+    
     def create(self, request, *args, **kwargs):
 
         serializer = self.get_serializer(data=request.data)
@@ -44,19 +44,20 @@ class Loginview(generics.CreateAPIView):
         
         email = request.data.get('email')
         password = request.data.get('password')
+        
+#   +++++++++++++++++++++++++++++++++++++++++++++++++++      
+        try:
+            user = authenticate(request, email=email, password=password)
 
-        # Use the authenticate function
-        user = authenticate(request, email=email, password=password)
-
-        if user is not None: 
-            refresh = get_tokens_for_user(user)  # Create a refresh token for the given user
-
-            return Response({
+            if user is not None: 
+                refresh = get_tokens_for_user(user)  
+                return Response({
                       'refresh': str(refresh['refresh']), 
                       'access' : str(refresh['access'])  # Access token can be retrieved from the refresh token
                     })
-        else:
-             return Response("Invalid email or password")
+                
+        except User.DoesNotExist:     
+            return Response({'error': 'Invalid credentials'}, status=400)
 
 
 class RefershAccessToken(generics.CreateAPIView):
