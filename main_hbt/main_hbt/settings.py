@@ -23,16 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY ='django-insecure-qp*l2ado7n*s9^qs*!l=s1v_v%ptvl$8**=+wo_@!lq^n2xr_p'
+# SECRET_KEY ='django-insecure-qp*l2ado7n*s9^qs*!l=s1v_v%ptvl$8**=+wo_@!lq^n2xr_p'
 
-# SECRET_KEY = os.environ.get("SECRET_KEY")                        
+SECRET_KEY = os.environ.get("SECRET_KEY")                        
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+# DEBUG = True
+DEBUG = os.environ.get("DEBUG","False").lower() == "true"
 
-ALLOWED_HOSTS =['*']
-# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS =['*']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # Application definition
 
@@ -43,13 +43,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Cloudinary apps
+    'cloudinary',
+    'cloudinary_storage',
+    
+    # Other third-party apps
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    
+    # My apps
     'authn_user',
     'profile_app',
     'community_app',
+    'quest_app',
 ]
+
 
 AUTH_USER_MODEL = "authn_user.User"
 
@@ -90,17 +100,17 @@ WSGI_APPLICATION = 'main_hbt.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'hbtdb',
-    #     "USER": "root",
-    #     "PASSWORD": "toor121.",
-    #     'HOST':'localhost',
-    #     'PORT':'3306',
-    # }
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'hbt',
+#         "USER": "root",
+#         "PASSWORD": "toor121.",
+#         'HOST':'localhost',
+#         'PORT':'3306',
+#     }
 }
-database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
-# database_url = os.environ.get("DATABASES_URL")
+# database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
+database_url = os.environ.get("DATABASES_URL")
 DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
@@ -166,3 +176,16 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+#cloudinary
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'daxv7ynod',
+    'API_KEY': '836615362873212',
+    'API_SECRET': 'qD7CFWs5I55hqeO32b0tbpWe_iU',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+MEDIA_URL = '/HBT_assets/'

@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.core.validators import RegexValidator 
 from django.db.models.signals import post_save 
 from authn_user.models import User 
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 # profile model
 class UserProfile(models.Model):
@@ -13,7 +14,7 @@ class UserProfile(models.Model):
     }
     user     = models.OneToOneField(User,on_delete=models.CASCADE)  #one-to-one relationeship
     codename = models.CharField(max_length=20)
-    age      = models.PositiveSmallIntegerField(blank=True) 
+    age      = models.PositiveSmallIntegerField(blank=True,null=True) 
     gender   = models.CharField(max_length=20, choices=enum_gender, blank=True)
     height   = models.DecimalField(max_digits=5, decimal_places=2,null=True) 
     weight   = models.DecimalField(max_digits=5, decimal_places=2,null=True)
@@ -28,7 +29,7 @@ class UserProfile(models.Model):
         ],null=True
     )
     bio         = models.CharField(max_length=500,null=True)
-    profile_pic = models.ImageField(upload_to='user_images',null=True)
+    profile_pic = models.ImageField( storage=MediaCloudinaryStorage(), upload_to='user_profile_pic/',null=True)
 
 
 @receiver(post_save, sender=User)  
@@ -76,21 +77,4 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     # Category_id = models.ForeignKey(SetGoal, on_delete=models.CASCADE)
     # sports_name = models.CharField(max_length=20, choices=list_of_Sports, blank=True)
 
-class Exercise(models.Model):
-    
-    # exercise_id = models.AutoField(primary_key=True)
-    exercise_name = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True)
-    # type = models.CharField(max_length=20)  # EX or STRECH
-    target_zones_major = models.CharField(max_length=100)
-    target_zones_minor = models.CharField(max_length=100, blank=True, null=True)
-    min_reps = models.PositiveIntegerField()
-    max_reps = models.PositiveIntegerField()
-    time_based = models.BooleanField(default=False)
-    pose_tag = models.CharField(max_length=100)
-    equipment = models.CharField(max_length=100, default="None")
-    media_url = models.CharField(max_length=255)
-    remarks = models.TextField(blank=True, null=True)
 
-    def __str__(self):
-        return self.exercise_name

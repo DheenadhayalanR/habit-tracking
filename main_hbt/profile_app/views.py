@@ -1,10 +1,10 @@
 from .models import UserProfile 
-from .serializer import Userprofileserializer
+from .serializers import Userprofileserializer
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework import generics,permissions,status
 
-class profile_update(generics.RetrieveUpdateAPIView):
+class ProfileUpdate(generics.RetrieveUpdateAPIView):
     
     serializer_class = Userprofileserializer
     permission_classes = [permissions.IsAuthenticated]
@@ -19,7 +19,7 @@ class profile_update(generics.RetrieveUpdateAPIView):
         serializer.save()   
         
 
-class bioRetrieveUpdate(generics.RetrieveUpdateAPIView):
+class BioRetrieveUpdate(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self):
