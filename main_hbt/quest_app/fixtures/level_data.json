@@ -1,0 +1,29 @@
+[
+    {
+        "model": "quest_app.Level",
+        "pk": 1,
+        "fields": {
+            "level": "Beginner",
+            "reps" : 5,
+            "sets" : 2
+        }
+    },
+    {
+        "model": "quest_app.Level",
+        "pk": 2,
+        "fields": {
+            "level": "Intermediate",
+            "reps" : 10,
+            "sets" : 3
+        }
+    },
+    {
+        "model": "quest_app.Level",
+        "pk": 3,
+        "fields": {
+            "level": "Advanced",
+            "reps" : 15,
+            "sets" : 4
+        }
+    }
+]

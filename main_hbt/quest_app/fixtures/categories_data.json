@@ -1,0 +1,58 @@
+[
+    
+     {
+        "model": "quest_app.ExerciseCategory",
+        "pk": 1,
+        "fields": {
+            "category_name":"Cardio",
+            "category_description": ""
+        }
+    },
+    {
+        "model": "quest_app.ExerciseCategory",
+        "pk": 2,
+        "fields": {
+            "category_name":"Flexibility",
+            "category_description": ""
+        }
+    },
+    {
+        "model": "quest_app.ExerciseCategory",
+        "pk": 3,
+        "fields": {
+            "category_name":"Mobility",
+            "category_description": ""
+        }
+    },
+    {
+        "model": "quest_app.ExerciseCategory",
+        "pk": 4,
+        "fields": {
+            "category_name":"Abs",
+            "category_description": ""
+        }
+    },
+    {
+        "model": "quest_app.ExerciseCategory",
+        "pk": 5,
+        "fields": {
+            "category_name":"Arms",
+            "category_description": ""
+        }
+    },
+    {
+        "model": "quest_app.ExerciseCategory",
+        "pk": 6,
+        "fields": {
+            "category_name":"Strength",
+            "category_description": ""
+        }
+    },{
+        "model": "quest_app.ExerciseCategory",
+        "pk": 7,
+        "fields": {
+            "category_name":"Balance",
+            "category_description": ""
+        }
+    }
+]
