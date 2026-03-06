@@ -50,7 +50,7 @@ class Level(models.Model):
     sets = models.IntegerField()
     
     
-# level Stat of the user 
+# level Status of the user 
 class Status(models.Model):
     # only unique user in the status
     
@@ -63,10 +63,12 @@ class Status(models.Model):
 # Workout plan based on the level its default model  
 class WorkoutPlan(models.Model):
     
-    status = models.ForeignKey(Status,on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user_status = models.ForeignKey(Status,on_delete=models.CASCADE)
+    # user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     day = models.ForeignKey(DayPlan, on_delete=models.CASCADE)
     exercises = models.ForeignKey(Exercise,on_delete=models.CASCADE)
+    # is_active = models.BooleanField(default=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
      
     # def __str__(self):
     #     return self.day
@@ -77,5 +79,7 @@ class WorkoutProgress(models.Model):
     day = models.ForeignKey(DayPlan, on_delete = models.CASCADE)
     total_day = models.IntegerField(null=True)
     workout_completed = models.BooleanField(default=False)
+    # is_active = models.BooleanField(default=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
     
     
