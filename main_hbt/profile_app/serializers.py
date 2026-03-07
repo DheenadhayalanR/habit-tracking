@@ -8,20 +8,10 @@ class Userprofileserializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = [
-            'codename','age', 'gender', 'height', 'weight',
-            'career', 'contact','name'
+            'codename', 'age', 'gender', 'height', 'weight',
+            'career', 'contact', 'bio', 'profile_pic', 'name'
         ]
 
-class profilebioserializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = 'bio'
-        
-class profilepicserializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = 'profile_pic'
-        
         
 # class Setgoalserializer(serializers.ModelSerializer):
 

@@ -6,7 +6,7 @@ from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated
 from .token_generate import get_tokens_for_user ,refresh_access_token
-from .serializer import RegisterSerializer,Loginserializer
+from .serializers import RegisterSerializer,Loginserializer
 
 
 # Create your views here.

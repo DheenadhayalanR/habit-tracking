@@ -1,7 +1,15 @@
-# Python cache
+# Python
 __pycache__/
-*.py[cod]
+*.pyc
 
-# Django migrations (ignore all except initializer)
-**/migrations/*.py
+# Django
+*.log
+db.sqlite3
+
+# Virtual environment
+venv/
+env/
+
+# Migrations
+**/migrations/*
 !**/migrations/__init__.py
