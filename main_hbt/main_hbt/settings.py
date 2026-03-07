@@ -109,14 +109,14 @@ WSGI_APPLICATION = 'main_hbt.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = { 
-    # 'default': {
+    'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'hbt',
     #     "USER": "root",
     #     "PASSWORD": "toor121.",
     #     'HOST':'localhost',
     #     'PORT':'3306',
-    # }
+    }
 }
 # database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
 # database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
