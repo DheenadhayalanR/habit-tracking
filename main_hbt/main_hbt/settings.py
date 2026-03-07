@@ -120,7 +120,7 @@ DATABASES = {
 }
 # database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
 # database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
-database_url = os.environ.get("DATABASES_URL")
+database_url = os.environ.get("DATABASE_URL")
 DATABASES['default'] = dj_database_url.parse(database_url)
 
 
