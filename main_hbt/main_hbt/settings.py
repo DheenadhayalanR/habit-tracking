@@ -49,9 +49,17 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     
     # Other third-party apps
+    
+    # Cloudinary apps
+    'cloudinary',
+    'cloudinary_storage',
+    
+    # Other third-party apps
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    
+    # My apps
     
     # My apps
     'authn_user',
@@ -111,7 +119,9 @@ DATABASES = {
     }
 }
 # database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
+# database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
 # database_url = os.environ.get("DATABASES_URL")
+# DATABASES['default'] = dj_database_url.parse(database_url)
 # DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
