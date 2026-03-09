@@ -23,16 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY ='django-insecure-qp*l2ado7n*s9^qs*!l=s1v_v%ptvl$8**=+wo_@!lq^n2xr_p'
+SECRET_KEY ='django-insecure-qp*l2ado7n*s9^qs*!l=s1v_v%ptvl$8**=+wo_@!lq^n2xr_p'
 
-SECRET_KEY = os.environ.get("SECRET_KEY")                        
+# SECRET_KEY = os.environ.get("SECRET_KEY")                        
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+DEBUG = True
+# DEBUG = os.environ.get("DEBUG","False").lower() == "true"
 
-# ALLOWED_HOSTS =['*']
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split()
+ALLOWED_HOSTS =['*']
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split()
 
 # Application definition
 
@@ -106,18 +106,18 @@ WSGI_APPLICATION = 'main_hbt.wsgi.application'
 
 DATABASES = { 
     'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'hbt',
-    #     "USER": "root",
-    #     "PASSWORD": "toor121.",
-    #     'HOST':'localhost',
-    #     'PORT':'3306',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hbt',
+        "USER": "root",
+        "PASSWORD": "toor121.",
+        'HOST':'localhost',
+        'PORT':'3306',
     }
 }
 # database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
-# database_url='postgresql://toor:KpMoncc2Tor5veliDM3XLadAPLIa1BsV@dpg-d11990p5pdvs73eo5ulg-a.oregon-postgres.render.com/hbtrack_m2bc'
-database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+# database_url='postgresql://root:aJCH8t74gc7KZF0HlKpNybnXo3d9AD1t@dpg-d6l4c5npm1nc7394t4e0-a.virginia-postgres.render.com/wtf_oh5b'
+# database_url = os.environ.get("DATABASE_URL")
+# DATABASES['default'] = dj_database_url.parse(database_url)
 
 
 # Password validation

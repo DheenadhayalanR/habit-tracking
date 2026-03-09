@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import LocationView, TrackLocationView
+from .views import LocationView,UpdateLocationView
 
 urlpatterns = [
-    path('locations/', LocationView.as_view(), name='location-list'),
-    path('track/', TrackLocationView.as_view(), name='track-location'),
+    path('', LocationView.as_view(), name='location'),
+    path('<int:id>/', UpdateLocationView.as_view(), name='update-location'),
 ]
