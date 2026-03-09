@@ -37,11 +37,9 @@ class LocationView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
 
         tracked_ip = get_client_ip(request)
-        geolocation_data = get_ip_geolocation(tracked_ip)
-        logger.info("geolocation_data",geolocation_data)
-        logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        geolocation_data = get_ip_geolocation(tracked_ip) 
+       
         if geolocation_data and "error" not in geolocation_data:
-
             loc = geolocation_data.get("loc")
 
             if loc:
@@ -53,14 +51,16 @@ class LocationView(generics.ListAPIView):
 
                 location_name = f"{country}, {region}, {city}"
 
-                # Location.objects.get_or_create(
-                #     user=request.user,
-                #     defaults={
-                #         "latitude": latitude,
-                #         "longitude": longitude,
-                #         "country_region_city_name": location_name
-                #     }
-                # )
+                print("location_name",request.user.id)    
+
+                Location.objects.get_or_create(
+                    user=request.user.id,
+                    defaults={
+                        "latitude": latitude,
+                        "longitude": longitude,
+                        "country_region_city_name": location_name
+                    }
+                )
 
         return super().list(request, *args, **kwargs)
 
