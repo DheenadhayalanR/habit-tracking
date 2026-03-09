@@ -7,6 +7,9 @@ import requests
 from .models import Location
 from authn_user.models import User
 from .serializers import LocationSerializer
+import logging
+
+logger = logging.getLogger(__name__)
 
 # 1. Your existing model view
 
@@ -32,11 +35,10 @@ class LocationView(generics.ListAPIView):
     serializer_class = LocationSerializer
 
     def list(self, request, *args, **kwargs):
-        print("LIST API CALLED")
 
         tracked_ip = get_client_ip(request)
         geolocation_data = get_ip_geolocation(tracked_ip)
-
+        logger.info("geolocation_data",geolocation_data)
         if geolocation_data and "error" not in geolocation_data:
 
             loc = geolocation_data.get("loc")
