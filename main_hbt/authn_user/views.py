@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import IsAuthenticated
 from .token_generate import get_tokens_for_user ,refresh_access_token
 from .serializers import RegisterSerializer,Loginserializer
+from location_app.utils import create_location
 
 
 # Create your views here.
@@ -50,7 +51,8 @@ class Loginview(generics.CreateAPIView):
             user = authenticate(request, email=email, password=password)
 
             if user is not None: 
-                refresh = get_tokens_for_user(user)  
+                refresh = get_tokens_for_user(user)
+                create_location(request)
                 return Response({
                       'refresh': str(refresh['refresh']), 
                       'access' : str(refresh['access'])  # Access token can be retrieved from the refresh token
