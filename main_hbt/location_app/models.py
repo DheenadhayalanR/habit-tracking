@@ -9,6 +9,7 @@ from django.conf import settings
 #     user = User.objects.first()  # get first user
 #     return user.id if user else None # assign first user
 # Create your models here.
+
 class Location(models.Model):
     country_region_city_name = models.CharField(max_length=100) 
     latitude = models.FloatField()

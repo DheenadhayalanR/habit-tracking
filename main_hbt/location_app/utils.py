@@ -42,13 +42,11 @@ def create_location(request):
 
             location_name = f"{country}, {region}, {city}"
 
-            Location.objects.get_or_create(
+            Location.objects.create(
                 user=request.user.id,
-                defaults={
-                    "latitude": latitude,
-                    "longitude": longitude,
-                    "country_region_city_name": location_name
-                }
+                latitude=latitude,
+                longitude=longitude,
+                country_region_city_name=location_name
             )
     except Exception as e:
         logger.error(f"Error creating location: {e}")
