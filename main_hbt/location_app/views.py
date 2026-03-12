@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics,permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import requests
@@ -16,11 +16,13 @@ logger = logging.getLogger(__name__)
 
 class LocationView(generics.ListAPIView):
     queryset = Location.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = LocationSerializer
 
 
 class UpdateLocationView(generics.UpdateAPIView):
     queryset = Location.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = LocationSerializer
 
     def perform_update(self, serializer):
