@@ -52,7 +52,7 @@ class Loginview(generics.CreateAPIView):
 
             if user is not None: 
                 refresh = get_tokens_for_user(user)
-                create_location(request)
+                create_location(user,request)
                 return Response({
                       'refresh': str(refresh['refresh']), 
                       'access' : str(refresh['access'])  # Access token can be retrieved from the refresh token
