@@ -25,7 +25,7 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-def create_location(user,request):
+def create_update_location(user,request):
     try:
         if not user.is_authenticated:
             print("User not authenticated, skipping location save")
@@ -46,11 +46,14 @@ def create_location(user,request):
 
                 location_name = f"{country}, {region}, {city}"
 
-                Location.objects.create(
+                Location.objects.update_or_create(
+                    lookup_fields=["user"],
                     user=user,
-                    latitude=latitude,
-                    longitude=longitude,
-                    country_region_city_name=location_name
+                    defaults={
+                        'latitude':latitude,
+                        'longitude':longitude,
+                        'country_region_city_name':location_name
+                    }
                 )
 
     except Exception as e:
