@@ -12,7 +12,7 @@ def get_ip_geolocation(ip_address):
     url = f"http://ipinfo.io/{ip_address}/json"
     response = requests.get(url)
     if response.status_code == 200:
-        print(response.json())
+        # print(response.json())
         return response.json()
     return None
 
@@ -25,28 +25,33 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-def create_location(request):
+def create_location(user,request):
     try:
+        if not user.is_authenticated:
+            print("User not authenticated, skipping location save")
+            return
+
         tracked_ip = get_client_ip(request)
-        geolocation_data = get_ip_geolocation(tracked_ip) 
-        
+        geolocation_data = get_ip_geolocation(tracked_ip)
+
         if geolocation_data and "error" not in geolocation_data:
             loc = geolocation_data.get("loc")
 
-        if loc:
-            latitude, longitude = loc.split(",")
+            if loc:
+                latitude, longitude = loc.split(",")
 
-            city = geolocation_data.get("city")
-            region = geolocation_data.get("region")
-            country = geolocation_data.get("country")
+                city = geolocation_data.get("city")
+                region = geolocation_data.get("region")
+                country = geolocation_data.get("country")
 
-            location_name = f"{country}, {region}, {city}"
+                location_name = f"{country}, {region}, {city}"
 
-            Location.objects.create(
-                user=request.user,
-                latitude=latitude,
-                longitude=longitude,
-                country_region_city_name=location_name
-            )
+                Location.objects.create(
+                    user=user,
+                    latitude=latitude,
+                    longitude=longitude,
+                    country_region_city_name=location_name
+                )
+
     except Exception as e:
         logger.error(f"Error creating location: {e}")
