@@ -43,7 +43,7 @@ def create_location(request):
             location_name = f"{country}, {region}, {city}"
 
             Location.objects.create(
-                user=request.user.id,
+                user=request.user,
                 latitude=latitude,
                 longitude=longitude,
                 country_region_city_name=location_name
