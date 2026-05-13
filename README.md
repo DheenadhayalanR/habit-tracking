@@ -722,7 +722,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For issues, questions, or suggestions:
 - **Open an Issue** on GitHub
-- **Email:** DheenadhayalanR@example.com
+- **Email:** dhayadhaya444@gmail.com
 - **GitHub:** [@DheenadhayalanR](https://github.com/DheenadhayalanR)
 
 ---
